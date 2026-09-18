@@ -1,0 +1,655 @@
+/* ═══════════════════════════════════════════════════════════════════
+   Rinjani Chat — Tema Lombok
+   Palet: teal laut (#0d8a82), pasir pantai (#f5ede0), emas sunset (#c9933a)
+   ═══════════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  color-scheme: light;
+
+  /* ── Warna utama ── */
+  --teal:        #0d8a82;
+  --teal-dark:   #0a6b65;
+  --teal-light:  #e0f4f3;
+  --gold:        #c9933a;
+  --gold-light:  #fdf3e3;
+  --sand:        #f5ede0;
+  --sand-dark:   #e8ddd0;
+
+  /* ── Teks ── */
+  --ink:         #1a2e2d;
+  --ink-soft:    #3d5654;
+  --muted:       #7a9190;
+
+  /* ── UI ── */
+  --surface:     #ffffff;
+  --line:        #ddecea;
+  --soft:        #f0f8f7;
+  --user-bg:     #d6f0ee;
+  --user-border: #a8dbd9;
+
+  /* ── Efek ── */
+  --shadow-sm:   0 2px 8px rgba(13, 138, 130, 0.08);
+  --shadow-md:   0 8px 32px rgba(13, 107, 101, 0.14);
+  --shadow-lg:   0 20px 60px rgba(13, 107, 101, 0.18);
+  --radius:      20px;
+  --radius-sm:   12px;
+}
+
+/* ── Reset & base ────────────────────────────────────────────────── */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', Arial, sans-serif;
+  color: var(--ink);
+  background-color: #c8e8e6;
+  background-image:
+    /* Gelombang SVG inline sebagai data URI */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1440' height='320' viewBox='0 0 1440 320'%3E%3Cpath fill='%230d8a82' fill-opacity='0.07' d='M0,192L48,186.7C96,181,192,171,288,181.3C384,192,480,224,576,224C672,224,768,192,864,181.3C960,171,1056,181,1152,192C1248,203,1344,213,1392,218.7L1440,224L1440,320L0,320Z'/%3E%3C/svg%3E"),
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1440' height='320' viewBox='0 0 1440 320'%3E%3Cpath fill='%23c9933a' fill-opacity='0.05' d='M0,96L60,112C120,128,240,160,360,154.7C480,149,600,107,720,101.3C840,96,960,128,1080,138.7C1200,149,1320,139,1380,133.3L1440,128L1440,0L0,0Z'/%3E%3C/svg%3E"),
+    linear-gradient(160deg, #d4eeec 0%, #eef7f5 35%, #fdf6ee 65%, #f0ebe0 100%);
+  background-attachment: fixed;
+  background-size: cover, cover, cover;
+  min-height: 100vh;
+  padding: 24px 16px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+/* ── Container ───────────────────────────────────────────────────── */
+
+.container {
+  width: 100%;
+  max-width: 680px;
+  height: min(700px, calc(100vh - 48px));
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Garis aksen emas di bagian atas container */
+.container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--teal) 0%, var(--gold) 50%, var(--teal) 100%);
+  border-radius: var(--radius) var(--radius) 0 0;
+  z-index: 1;
+}
+
+/* ── Header ──────────────────────────────────────────────────────── */
+
+.chat-header {
+  padding: 18px 24px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: linear-gradient(135deg, rgba(13,138,130,0.06) 0%, rgba(201,147,58,0.04) 100%);
+  border-bottom: 1px solid var(--line);
+  flex-shrink: 0;
+}
+
+.header-identity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+/* Avatar lingkaran bot */
+.bot-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(13,138,130,0.3);
+  font-size: 20px;
+  line-height: 1;
+}
+
+.header-text .eyebrow {
+  color: var(--gold);
+  font: 600 9px/1.2 'Inter', sans-serif;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  margin-bottom: 3px;
+}
+
+.header-text h1 {
+  font-size: clamp(18px, 3.5vw, 24px);
+  font-weight: 600;
+  line-height: 1.1;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+
+.header-text .subtitle {
+  color: var(--muted);
+  font: 12px/1.4 'Inter', sans-serif;
+}
+
+/* Status online indicator */
+.status-dot {
+  display: inline-block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #22c55e;
+  margin-right: 5px;
+  vertical-align: middle;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.clear-button {
+  background: transparent;
+  color: var(--muted);
+  border: 1px solid var(--line);
+  padding: 7px 12px;
+  font: 500 12px 'Inter', sans-serif;
+  border-radius: 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: all 140ms ease;
+}
+
+.clear-button:hover {
+  background: var(--soft);
+  color: var(--teal-dark);
+  border-color: var(--teal-light);
+}
+
+/* ── Chat area ───────────────────────────────────────────────────── */
+
+.chat-box {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 20px;
+  background: linear-gradient(180deg, rgba(240,248,247,0.6) 0%, rgba(253,246,238,0.4) 100%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--sand-dark) transparent;
+}
+
+.chat-box::-webkit-scrollbar {
+  width: 4px;
+}
+
+.chat-box::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+  background: var(--sand-dark);
+  border-radius: 4px;
+}
+
+/* ── Messages ────────────────────────────────────────────────────── */
+
+.message {
+  max-width: min(82%, 520px);
+  padding: 11px 15px;
+  border-radius: 16px;
+  font: 14px/1.6 'Inter', sans-serif;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  animation: msg-in 180ms ease-out both;
+}
+
+@keyframes msg-in {
+  from { opacity: 0; transform: translateY(6px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Pesan user */
+.message.user {
+  align-self: flex-end;
+  background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
+  color: #ffffff;
+  border-bottom-right-radius: 4px;
+  box-shadow: 0 2px 8px rgba(13,138,130,0.25);
+}
+
+/* Pesan bot */
+.message.bot {
+  align-self: flex-start;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-bottom-left-radius: 4px;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+
+/* Garis kiri tipis emas untuk pesan bot */
+.message.bot::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 12px;
+  bottom: 12px;
+  width: 2.5px;
+  background: linear-gradient(180deg, var(--gold) 0%, var(--teal-light) 100%);
+  border-radius: 2px;
+}
+
+.message.bot {
+  padding-left: 18px;
+}
+
+/* Pesan error */
+.message.error {
+  color: #b91c1c;
+  border-color: #fca5a5;
+  background: #fff5f5;
+}
+
+.message.error::before {
+  background: #f87171;
+}
+
+/* ── Thinking/loading animation ──────────────────────────────────── */
+
+.message.bot.thinking {
+  color: var(--muted);
+  font-style: italic;
+}
+
+/* ── Markdown rendering ──────────────────────────────────────────── */
+
+.message.bot.md {
+  white-space: normal;
+}
+
+.message.bot .md-heading {
+  font-family: 'Playfair Display', Georgia, serif;
+  color: var(--teal-dark);
+  margin: 10px 0 5px;
+  line-height: 1.3;
+}
+
+.message.bot h3.md-heading { font-size: 15px; font-weight: 600; }
+.message.bot h4.md-heading { font-size: 14px; font-weight: 600; }
+.message.bot h5.md-heading { font-size: 13px; font-weight: 600; }
+
+.message.bot .md-heading:first-child { margin-top: 0; }
+
+.message.bot .md-p {
+  margin: 0 0 7px;
+  line-height: 1.65;
+}
+
+.message.bot .md-p:last-child { margin-bottom: 0; }
+
+.message.bot .md-spacer { height: 5px; }
+
+.message.bot .md-list {
+  margin: 4px 0 7px;
+  padding-left: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  list-style: none;
+}
+
+.message.bot .md-list li {
+  line-height: 1.6;
+  padding-left: 4px;
+  position: relative;
+}
+
+.message.bot .md-list li::before {
+  content: '›';
+  position: absolute;
+  left: -12px;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.message.bot .md-list:last-child { margin-bottom: 0; }
+
+.message.bot strong {
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.message.bot em {
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+.message.bot .md-code {
+  font-family: 'Courier New', Courier, monospace;
+  font-size: 12px;
+  background: var(--teal-light);
+  border: 1px solid rgba(13,138,130,0.15);
+  border-radius: 4px;
+  padding: 1px 5px;
+  color: var(--teal-dark);
+  white-space: nowrap;
+}
+
+/* ── Timestamp row (opsional, untuk future use) ─────────────────── */
+
+.msg-meta {
+  font: 10px/1 'Inter', sans-serif;
+  color: var(--muted);
+  margin-top: 3px;
+  opacity: 0.7;
+}
+
+.message.user + .msg-meta { text-align: right; }
+
+/* ── Quick chat suggestions ──────────────────────────────────────── */
+
+.quick-chat {
+  padding: 8px 20px 4px;
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  flex-shrink: 0;
+  animation: fade-in 300ms ease both;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(4px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.quick-chat-label {
+  display: block;
+  font: 500 10px/1.4 'Inter', sans-serif;
+  color: var(--muted);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 7px;
+}
+
+.quick-chat .suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  justify-content: flex-start;
+}
+
+/* ── Input form ──────────────────────────────────────────────────── */
+
+form {
+  margin: 0;
+  padding: 12px 20px 10px;
+  display: flex;
+  gap: 8px;
+  background: var(--surface);
+  border-top: 1px solid var(--line);
+  flex-shrink: 0;
+  align-items: flex-end;
+}
+
+input[type="text"] {
+  flex: 1;
+  min-width: 0;
+  padding: 11px 15px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--line);
+  color: var(--ink);
+  font: 14px 'Inter', sans-serif;
+  outline: none;
+  background: var(--soft);
+  transition: border-color 150ms ease, box-shadow 150ms ease, background 150ms ease;
+}
+
+input[type="text"]::placeholder {
+  color: var(--muted);
+  opacity: 0.8;
+}
+
+input[type="text"]:focus {
+  border-color: var(--teal);
+  background: var(--surface);
+  box-shadow: 0 0 0 3px rgba(13,138,130,0.1);
+}
+
+/* Tombol kirim */
+button[type="submit"] {
+  padding: 11px 18px;
+  border: none;
+  background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
+  color: white;
+  border-radius: var(--radius-sm);
+  font: 600 13px 'Inter', sans-serif;
+  cursor: pointer;
+  transition: filter 150ms ease, transform 150ms ease, box-shadow 150ms ease;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(13,138,130,0.3);
+  letter-spacing: 0.3px;
+}
+
+button[type="submit"]:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(13,138,130,0.35);
+}
+
+button[type="submit"]:active {
+  transform: translateY(0);
+}
+
+button[type="submit"]:disabled {
+  cursor: wait;
+  opacity: 0.6;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Tombol lainnya (clear, suggestion) */
+button {
+  cursor: pointer;
+}
+
+/* ── Welcome screen ──────────────────────────────────────────────── */
+
+.welcome {
+  max-width: 400px;
+  margin: auto;
+  text-align: center;
+  padding: 12px 0;
+}
+
+/* Ornamen motif batik Lombok — SVG inline */
+.welcome-ornament {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 16px;
+  position: relative;
+}
+
+.welcome-ornament svg {
+  width: 64px;
+  height: 64px;
+}
+
+.welcome h2 {
+  font-size: 22px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.welcome-sub {
+  color: var(--muted);
+  font: 13px/1.65 'Inter', sans-serif;
+  max-width: 320px;
+  margin: 0 auto 20px;
+}
+
+/* Divider ornamental */
+.welcome-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 auto 20px;
+  max-width: 280px;
+  color: var(--sand-dark);
+  font-size: 12px;
+}
+
+.welcome-divider::before,
+.welcome-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--sand-dark));
+}
+
+.welcome-divider::after {
+  background: linear-gradient(90deg, var(--sand-dark), transparent);
+}
+
+.suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+
+.suggestion {
+  background: var(--surface);
+  color: var(--teal-dark);
+  border: 1.5px solid var(--line);
+  font: 500 12px 'Inter', sans-serif;
+  padding: 8px 14px;
+  border-radius: 20px;
+  transition: all 150ms ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.suggestion:hover {
+  background: var(--teal-light);
+  border-color: var(--teal);
+  color: var(--teal-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(13,138,130,0.12);
+}
+
+/* ── Chat note ───────────────────────────────────────────────────── */
+
+.chat-note {
+  padding: 6px 20px 10px;
+  text-align: center;
+  font: 10px/1.5 'Inter', sans-serif;
+  color: var(--muted);
+  flex-shrink: 0;
+  opacity: 0.85;
+}
+
+/* ── Accessibility ───────────────────────────────────────────────── */
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+/* ── Mobile (≤ 600px) ────────────────────────────────────────────── */
+
+@media (max-width: 600px) {
+  body {
+    padding: 0;
+    align-items: stretch;
+  }
+
+  .container {
+    height: 100dvh;
+    max-width: 100%;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .container::before {
+    border-radius: 0;
+  }
+
+  .chat-header {
+    padding: 12px 16px 10px;
+  }
+
+  .bot-avatar {
+    width: 38px;
+    height: 38px;
+    font-size: 18px;
+  }
+
+  .header-text h1 {
+    font-size: 20px;
+  }
+
+  .chat-box {
+    padding: 16px;
+  }
+
+  form {
+    padding: 10px 16px 8px;
+  }
+
+  .chat-note {
+    padding: 4px 16px 8px;
+  }
+
+  .message {
+    max-width: 90%;
+    font-size: 14px;
+  }
+}
+
+/* ── Tablet (601–900px) ──────────────────────────────────────────── */
+
+@media (min-width: 601px) and (max-width: 900px) {
+  body {
+    padding: 16px;
+    align-items: center;
+  }
+
+  .container {
+    height: min(640px, calc(100vh - 32px));
+  }
+}

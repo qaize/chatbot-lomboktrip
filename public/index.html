@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="description" content="Asisten wisata LombokTrip untuk menjelajahi Nusa Tenggara Barat." />
+    <meta name="theme-color" content="#0d8a82" />
+    <title>Rinjani | Asisten Wisata NTB</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+
+      <!-- ── Header ─────────────────────────────────────────────── -->
+      <header class="chat-header">
+        <div class="header-identity">
+          <!-- Avatar bot: ikon gunung / wave emoji -->
+          <div class="bot-avatar" aria-hidden="true">🏝️</div>
+          <div class="header-text">
+            <p class="eyebrow">LOMBOKTRIP</p>
+            <h1>Rinjani</h1>
+            <p class="subtitle">
+              <span class="status-dot" aria-hidden="true"></span>
+              Teman perjalananmu menjelajahi NTB
+            </p>
+          </div>
+        </div>
+        <button type="button" id="clear-chat" class="clear-button" aria-label="Mulai percakapan baru">
+          ↺ Reset
+        </button>
+      </header>
+
+      <!-- ── Chat area ───────────────────────────────────────────── -->
+      <main id="chat-box" class="chat-box" aria-live="polite" aria-label="Area percakapan">
+
+        <!-- Welcome screen — disembunyikan saat salam muncul -->
+        <div id="welcome" class="welcome">
+
+          <!-- Ornamen: SVG bunga / motif geometris Lombok -->
+          <div class="welcome-ornament" aria-hidden="true">
+            <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Lingkaran luar emas -->
+              <circle cx="32" cy="32" r="30" stroke="#c9933a" stroke-width="1.5" stroke-dasharray="4 3"/>
+              <!-- Bunga 8 kelopak -->
+              <g transform="translate(32,32)">
+                <ellipse rx="5" ry="12" fill="#0d8a82" opacity="0.7"/>
+                <ellipse rx="5" ry="12" fill="#0d8a82" opacity="0.7" transform="rotate(45)"/>
+                <ellipse rx="5" ry="12" fill="#0d8a82" opacity="0.7" transform="rotate(90)"/>
+                <ellipse rx="5" ry="12" fill="#0d8a82" opacity="0.7" transform="rotate(135)"/>
+              </g>
+              <!-- Lingkaran tengah -->
+              <circle cx="32" cy="32" r="7" fill="#c9933a" opacity="0.9"/>
+              <circle cx="32" cy="32" r="3.5" fill="#ffffff"/>
+            </svg>
+          </div>
+
+          <h2>Mau menjelajah ke mana?</h2>
+          <p class="welcome-sub">
+            Tanyakan destinasi, kuliner, transportasi, atau tips
+            perjalanan di Nusa Tenggara Barat.
+          </p>
+
+          <!-- Divider ornamental -->
+          <div class="welcome-divider" aria-hidden="true">✦</div>
+
+        </div>
+
+      </main>
+
+      <!-- ── Quick chat suggestions — tetap tampil sampai diklik ── -->
+      <div id="quick-chat" class="quick-chat" aria-label="Pertanyaan cepat">
+        <span class="quick-chat-label">Coba tanya:</span>
+        <div class="suggestions">
+          <button type="button" class="suggestion">🗺️ Rekomendasi 3 hari di Lombok</button>
+          <button type="button" class="suggestion">⛵ Cara menuju Gili Trawangan</button>
+          <button type="button" class="suggestion">🍜 Kuliner khas yang wajib dicoba</button>
+          <button type="button" class="suggestion">🏔️ Trek Gunung Rinjani</button>
+        </div>
+      </div>
+
+      <!-- ── Input form ──────────────────────────────────────────── -->
+      <form id="chat-form" novalidate>
+        <label class="sr-only" for="user-input">Pesan</label>
+        <input
+          type="text"
+          id="user-input"
+          placeholder="Tanyakan sesuatu tentang NTB…"
+          autocomplete="off"
+          autocorrect="off"
+          spellcheck="false"
+          maxlength="4000"
+          required
+        />
+        <button type="submit" aria-label="Kirim pesan">Kirim →</button>
+      </form>
+
+      <p class="chat-note">
+        Rinjani dapat membuat kesalahan. Cek kembali detail harga dan ketersediaan.
+      </p>
+
+    </div>
+    <script src="script.js" defer></script>
+  </body>
+</html>
